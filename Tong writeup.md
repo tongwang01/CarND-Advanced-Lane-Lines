@@ -104,6 +104,8 @@ Here's [my video result for harder_challenge_video](https://github.com/tongwang0
 
 On the project video the pipeline performed well overall. The only major problem that I noticed is that the detected lanes are occasionally wobbly. Applying smoothing over ajacent frames in the video stream may solve this issue.
 
-On the harder challenge video the wobbly phenomenon is more pronuanced. A few potential causes that I can think of:
-* All the parameters in my pipeline is tuned (manually) based on the set of test_images, which are more similar to project video (maybe they are frames in the project video?) but less so to the harder challenge video. In this sense we might have "overfitted" to the test images.
-* Specifially, the manually set perspective transform is clearly off for the harder challenge video when it comes to sharp turns.
+On the harder challenge video the wobbly phenomenon is more pronuanced. I suspect one big reason is that all the parameters in my pipeline is tuned (manually) based on the set of test_images, which are more similar to project video (maybe they are frames in the project video?) but less so to the harder challenge video. In this sense we might have "overfitted" to the test images. Speficially:
+* The manually set perspective transform is clearly off for the harder challenge video when it comes to sharp turns.
+* My lane detection is sometimes "distracted" as it where by oncoming cars - which were not present in the test images. 
+* Much more drastic changes of lighting conditions also caused my lane detection to fail.
+
